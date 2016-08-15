@@ -10,13 +10,13 @@ import { Entry } from './entry.model';
     <form>
       <div class="row">
         <div class='col-sm-3'>
-          <input type="text" placeholder="Name" class="col-sm-8 input-sm" required #name>
+          <input type="text" placeholder="Name" class="col-sm-8 input-sm" #name>
         </div>
         <div class='col-sm-6'>
-          <input placeholder="Description" class="col-sm-8 input-sm" required #description>
+          <input placeholder="Description" class="col-sm-8 input-sm" #description>
         </div>
         <div class='col-sm-2'>
-          <input placeholder="Calories" class="col-sm-8 input-sm" required #calories>
+          <input placeholder="Calories" class="col-sm-8 input-sm" #calories>
         </div>
         <div class='col-sm-1'>
           <button (click)="addEntry(name, description, calories)">Add</button>

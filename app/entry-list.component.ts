@@ -60,7 +60,7 @@ export class EntryListComponent {
   }
 
   entryClicked(clickedEntry: Entry): void {
-    console.log('child', clickedEntry);
+    console.log('entry-list', clickedEntry);
     // this.selectedEntry = clickedEntry;
   }
 
