@@ -1,14 +1,17 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { Entry } from './entry.model';
 import { NewEntryComponent } from './new-entry.component';
+import { EditEntryDetailsComponent } from './edit-entry-details.component';
 
 
 @Component({
   selector: 'entry-list',
   inputs: ['entryList'],
-  directives: [NewEntryComponent],
+  // outputs: ['onEntryClicked'],
+  directives: [NewEntryComponent, EditEntryDetailsComponent],
   template: `
     <new-entry (onAddEntry)="createEntry($event)"></new-entry>
+    <edit-entry-details (onEntryClicked)="entryClicked($event)"></edit-entry-details>
 
     <h3>Entry List</h3>
 
@@ -26,7 +29,9 @@ import { NewEntryComponent } from './new-entry.component';
 
     <div class="row"
       *ngFor="#currentEntry of entryList"
-      [class.selected]="currentEntry === selectedEntry">
+      (click)="entryClicked(currentEntry)"
+
+      >
       <div class='col-sm-3'>
         {{ currentEntry.name }}
       </div>
@@ -43,6 +48,8 @@ import { NewEntryComponent } from './new-entry.component';
 export class EntryListComponent {
   public entryList: Entry[];
   public onAddEntry: EventEmitter<Entry>;
+  // public onEntryClicked: EventEmitter<Entry>;
+  public selectedEntry = Entry;
   constructor(){
     this.onAddEntry = new EventEmitter();
   }
@@ -50,6 +57,11 @@ export class EntryListComponent {
   createEntry(newEntry: Entry): void {
     console.log('entry-list', newEntry);
     this.entryList.push(newEntry);
+  }
+
+  entryClicked(clickedEntry: Entry): void {
+    console.log('child', clickedEntry);
+    // this.selectedEntry = clickedEntry;
   }
 
 }
