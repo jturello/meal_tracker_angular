@@ -11,7 +11,8 @@ import { EditEntryDetailsComponent } from './edit-entry-details.component';
   template: `
     <new-entry (onAddEntry)="createEntry($event)"></new-entry>
     <edit-entry-details
-      *ngIf="selectedEntry" [entry]="selectedEntry">
+      *ngIf="selectedEntry" [entry]="selectedEntry"
+      (onUpdateEntry)="deselectEntry(updatedEntry)">
     </edit-entry-details>
 
     <h3>Entry List</h3>
@@ -49,9 +50,11 @@ import { EditEntryDetailsComponent } from './edit-entry-details.component';
 export class EntryListComponent {
   public entryList: Entry[];
   public onAddEntry: EventEmitter<Entry>;
+  public onUpdateEntry: EventEmitter<Entry>;
   public selectedEntry: Entry;
   constructor(){
     this.onAddEntry = new EventEmitter();
+    this.onUpdateEntry = new EventEmitter();
   }
 
   createEntry(newEntry: Entry): void {
@@ -62,6 +65,10 @@ export class EntryListComponent {
   entryClicked(clickedEntry: Entry): void {
     console.log('entry-list', clickedEntry);
     this.selectedEntry = clickedEntry;
+  }
+
+  deselectEntry(): void {
+    this.selectedEntry = new Entry("", "", "");
   }
 
 }

@@ -5,6 +5,7 @@ import { Entry } from './entry.model';
 @Component({
   selector: 'edit-entry-details',
   inputs: ['entry'],
+  outputs: ['onUpdateEntry'],
   template: `
     <h3>Edit Entry:</h3>
     <form>
@@ -28,11 +29,16 @@ import { Entry } from './entry.model';
 
 export class EditEntryDetailsComponent {
   public entry: Entry;
+  public onUpdateEntry: EventEmitter<Entry>;
+  constructor() {
+    this.onUpdateEntry = new EventEmitter();
+  }
 
   updateEntry(newName: HTMLInputElement, newDescription: HTMLInputElement, newCalories: HTMLInputElement){
     this.entry.name = newName.value;
     this.entry.description = newDescription.value;
     this.entry.calories = newCalories.value;
     newName.value = newDescription.value = newCalories.value = "";
+    this.onUpdateEntry.emit(this.entry);
   }
 }
