@@ -68,7 +68,7 @@ export class EntryListComponent {
   }
 
   deselectEntry(): void {
-    this.selectedEntry = new Entry("", "", "");
+    this.selectedEntry = undefined;
   }
 
 }
