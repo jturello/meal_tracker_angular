@@ -36,7 +36,7 @@ export class NewEntryComponent {
     let newEntry = new Entry(name.value, description.value, calories.value);
     this.onAddEntry.emit(newEntry);
     name.value = description.value = calories.value = "";
-    console.log(newEntry);
+    console.log('new-entry', newEntry);
   }
 
 }

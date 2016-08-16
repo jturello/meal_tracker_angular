@@ -1,10 +1,11 @@
-import { Component } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core';
 import { Entry } from './entry.model';
 import { EntryListComponent } from './entry-list.component';
+import { EditEntryDetailsComponent } from './edit-entry-details.component';
 
 @Component({
   selector: 'my-app',
-  directives: [EntryListComponent],
+  directives: [EntryListComponent, EditEntryDetailsComponent],
   template: `
   <div class="container">
     <h1>Meal Tracker App</h1>
@@ -24,5 +25,4 @@ export class AppComponent {
       new Entry('Dumplings', '15 shui-jiao with vinegar and a thai tea', "450")
     ]
   }
-
 }

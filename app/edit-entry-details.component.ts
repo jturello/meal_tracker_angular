@@ -4,21 +4,19 @@ import { Entry } from './entry.model';
 
 @Component({
   selector: 'edit-entry-details',
-  outputs: ['onEntryClicked'],
+  inputs: ['entry'],
   template: `
     <h3>Edit Entry:</h3>
     <form>
-      <div class="row"
-        (click)="entryClicked(currentEntry)"
-        [class.selected]="currentEntry === selectedEntry">
+      <div class="row">
         <div class='col-sm-3'>
-          <input type="text" placeholder="Name" class="col-sm-8 input-sm" required #name>
+          <input [(ngModel)]="entry.name">
         </div>
         <div class='col-sm-6'>
-          <input placeholder="Description" class="col-sm-8 input-sm" required #description>
+          <input [(ngModel)]="entry.description">
         </div>
         <div class='col-sm-2'>
-          <input placeholder="Calories" class="col-sm-8 input-sm" required #calories>
+          <input [(ngModel)]="entry.calories">
         </div>
         <div class='col-sm-1'>
         </div>
@@ -28,14 +26,6 @@ import { Entry } from './entry.model';
 })
 
 export class EditEntryDetailsComponent {
-  public onEntryClicked: EventEmitter<Entry>;
-  constructor(){
-    this.onEntryClicked = new EventEmitter();
-  }
-
-  entryClicked(currentEntry: Entry){
-    this.onEntryClicked.emit(currentEntry);
-    console.log(currentEntry);
-  }
+  public entry: Entry;
 
 }
