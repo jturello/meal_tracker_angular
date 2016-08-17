@@ -2,18 +2,28 @@ import { Component, EventEmitter } from 'angular2/core';
 import { Entry } from './entry.model';
 import { NewEntryComponent } from './new-entry.component';
 import { EditEntryDetailsComponent } from './edit-entry-details.component';
+import { CalorieCountPipe } from './calorie-count.pipe';
 
 
 @Component({
   selector: 'entry-list',
   inputs: ['entryList'],
   directives: [NewEntryComponent, EditEntryDetailsComponent],
+  pipes: [CalorieCountPipe],
   template: `
     <new-entry (onAddEntry)="createEntry($event)"></new-entry>
     <edit-entry-details
       *ngIf="selectedEntry" [entry]="selectedEntry"
-      (onUpdateEntry)="deselectEntry(updatedEntry)">
+      (onUpdateEntry)="deselectEntry(selectedEntry)">
     </edit-entry-details>
+
+    <hr>
+
+    <select (change)="onChange($event.target.value)" class="filter">
+      <option value="All" selected="selected">Show All</option>
+      <option value="<500">&lt; 500 Calories</option>
+      <option value=">=500">&gt;= 500 Calories</option>
+    </select>
 
     <h3>Entry List</h3>
 
@@ -30,7 +40,7 @@ import { EditEntryDetailsComponent } from './edit-entry-details.component';
     </div>
 
     <div class="row"
-      *ngFor="#currentEntry of entryList"
+      *ngFor="#currentEntry of entryList | calorieCount:filter"
       (click)="entryClicked(currentEntry)"
       [class.selected]="currentEntry === selectedEntry"
       >
@@ -52,23 +62,27 @@ export class EntryListComponent {
   public onAddEntry: EventEmitter<Entry>;
   public onUpdateEntry: EventEmitter<Entry>;
   public selectedEntry: Entry;
+  public show: boolean = false;
+  public filter: String = "All";
   constructor(){
     this.onAddEntry = new EventEmitter();
     this.onUpdateEntry = new EventEmitter();
   }
 
   createEntry(newEntry: Entry): void {
-    console.log('entry-list', newEntry);
     this.entryList.push(newEntry);
   }
 
   entryClicked(clickedEntry: Entry): void {
-    console.log('entry-list', clickedEntry);
     this.selectedEntry = clickedEntry;
+    this.show = true;
   }
 
   deselectEntry(): void {
     this.selectedEntry = undefined;
   }
 
+  onChange(selectedOption: String): void {
+    this.filter = selectedOption;
+  }
 }
