@@ -17,7 +17,7 @@ import { Entry } from './entry.model';
           <input [ngModel]="entry.description" class="input-sm" #description>
         </div>
         <div class='col-sm-2'>
-          <input [ngModel]="entry.calories" class="input-sm" #calories>
+          <input [ngModel]="entry.calories" type="number" class="input-sm" #calories>
         </div>
         <div class='col-sm-1'>
           <button (click)="updateEntry(name, description, calories)">Update</button>

@@ -16,7 +16,7 @@ import { Entry } from './entry.model';
           <input placeholder="Description" class="col-sm-8 input-sm" #description>
         </div>
         <div class='col-sm-2'>
-          <input placeholder="Calories" class="col-sm-8 input-sm" #calories>
+          <input type="number" placeholder="Calories" class="col-sm-8 input-sm" #calories>
         </div>
         <div class='col-sm-1'>
           <button (click)="addEntry(name, description, calories)">Add</button>
