@@ -1,36 +1,33 @@
-Epicodus javascript Week 1 Code Review - Using an API
+Epicodus Angular2 Code Review - Create an Angular2 App with at Least One Pipe
 
-#### Description/Assignment: Create a website where the user can enter a GitHub username into a form, submit it, and see names and descriptions of that person's public repositories. Use the GitHub API to retrieve this information.
+#### Description/Assignment:
+Create a website where the user can log (create, update, and view) entries with information about their meals. Each entry has the following fields:  meal name, meal description, and associated calories. The Edit Entry component is hidden until the user clicks on an entry. When the use clicks the update button and the update is processed the Edit Entry component becomes hidden again until another entry is selected/clicked.
 
 #### By James Turello
 
 ## Setup/Installation Instructions/Requirements
 
- * Clone the git repository
- * From a terminal window cd into the project's root directory ('github_lookup_js')
+ * Clone the git repository,
+ * From a terminal window cd into the project's root directory ('meal_tracker_angular'),
  * Run the following commands in the terminal window
    * npm install
    * bower install
- * You need a github Personal Access Token to run this app. Setup instructions:
-  * go to the Settings page of your GitHub account
-  * select *Personal Access Tokens* from the sidebar
-  * click *Generate New Token*
-  * select *Generate Token*
-  * create a .env file in your project's root directory
-  * if your token is 12345, save the following string in your .env file: `exports.apiKey = "12345";`
- * Again in your terminal window (from the project root directory), enter the following commands:
    * gulp build
    * gulp serve
- * Enter `localhost:3000` in your browser and enter a github id to search for and display
+ * Enter `localhost:3000` in your browser to run the app.
 
+##### *Notes*:
+
+ 1. npm, bower, and gulp were installed globally on the machine where this code was developed,
+ 2. This project is configured to transpile .ts files to ES5. To change, modify the "target" option in file tsconfig.json in the project root directory.
 
 ## Known Bugs/Issues
 
-The input field is `required`. Because of the asynchronous nature of ajax calls, the validation message *please fill out this field* will display after you submit a request.
+Unit and integration tests have not been created for this project. This has been added to the project backlog.
 
 ## Technologies Used
 
-npm (Node Package Manager) 3.10.3, gulp 3.9.1, bower 1.7.9, tested on Chrome 52.0.2743.116 (64-bit)(Mac)
+Angular2, Typescript, npm (Node Package Manager) 3.10.3, gulp 3.9.1, bower 1.7.9, tested on Chrome 52.0.2743.116 (64-bit)(Mac)
 
 ### License
 
